@@ -1,0 +1,91 @@
+#include <stdio.h>
+
+#define MAX 10 // Tamanho máximo da matriz escalar
+
+// Representação compacta de matriz escalar:
+// Uma matriz escalar é uma matriz diagonal onde todos os elementos da diagonal são iguais a um único valor escalar.
+
+// Soma das matrizes escalares
+void somaMatrizesEscalares(int escalarA, int escalarB, int C[MAX], int n) {
+    int soma = escalarA + escalarB;
+    for (int i = 0; i < n; i++) {
+        C[i] = soma;
+    }
+}
+
+// Subtração das matrizes escalares
+void subtraiMatrizesEscalares(int escalarA, int escalarB, int C[MAX], int n) {
+    int subtracao = escalarA - escalarB;
+    for (int i = 0; i < n; i++) {
+        C[i] = subtracao;
+    }
+}
+
+// Multiplicação das matrizes escalares
+void multiplicaMatrizesEscalares(int escalarA, int escalarB, int C[MAX], int n) {
+    int multiplicacao = escalarA * escalarB;
+    for (int i = 0; i < n; i++) {
+        C[i] = multiplicacao;
+    }
+}
+
+// Divisão das matrizes escalares
+void divideMatrizesEscalares(int escalarA, int escalarB, int C[MAX], int n) {
+    if (escalarB == 0) {
+        printf("Erro: Divisao por zero.\n");
+        for (int i = 0; i < n; i++) {
+            C[i] = 0; // Definindo como zero em caso de erro
+        }
+        return;
+    }
+    int divisao = escalarA / escalarB;
+    for (int i = 0; i < n; i++) {
+        C[i] = divisao;
+    }
+}
+
+// Imprime a matriz escalar no formato tradicional (matriz quadrada n x n)
+void imprimeMatrizEscalar(int diagonal[MAX], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == j) {
+                printf("%d ", diagonal[i]);
+            } else {
+                printf("0 ");
+            }
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int n = 4; // Dimensão da matriz escalar (n x n)
+
+    // Escalares representando as matrizes escalares
+    int escalarA = 5;
+    int escalarB = 3;
+    int C[MAX]; // Resultado
+
+    // Soma
+    somaMatrizesEscalares(escalarA, escalarB, C, n);
+    printf("Soma das matrizes escalares:\n");
+    imprimeMatrizEscalar(C, n);
+
+    // Subtração
+    subtraiMatrizesEscalares(escalarA, escalarB, C, n);
+    printf("Subtracao das matrizes escalares:\n");
+    imprimeMatrizEscalar(C, n);
+
+    // Multiplicação
+    multiplicaMatrizesEscalares(escalarA, escalarB, C, n);
+    printf("Multiplicacao das matrizes escalares:\n");
+    imprimeMatrizEscalar(C, n);
+
+    // Divisão
+    divideMatrizesEscalares(escalarA, escalarB, C, n);
+    printf("Divisao das matrizes escalares:\n");
+    imprimeMatrizEscalar(C, n);
+
+    return 0;
+}
+

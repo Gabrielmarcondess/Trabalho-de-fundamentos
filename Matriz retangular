@@ -1,0 +1,69 @@
+#include <stdio.h>
+
+#define MAX 10 // Definindo um tamanho máximo para as matrizes
+
+void somaMatrizes(int A[MAX][MAX], int B[MAX][MAX], int C[MAX][MAX], int m, int n) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            C[i][j] = A[i][j] + B[i][j];
+        }
+    }
+}
+
+void subtraiMatrizes(int A[MAX][MAX], int B[MAX][MAX], int C[MAX][MAX], int m, int n) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            C[i][j] = A[i][j] - B[i][j];
+        }
+    }
+}
+
+void multiplicaMatrizes(int A[MAX][MAX], int B[MAX][MAX], int C[MAX][MAX], int m, int n, int p) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < p; j++) {
+            C[i][j] = 0; // Inicializa a matriz C
+            for (int k = 0; k < n; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+void imprimeMatriz(int matriz[MAX][MAX], int m, int n) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int A[MAX][MAX] = {{1, 2, 3}, {4, 5, 6}};
+    int B[MAX][MAX] = {{7, 8, 9}, {10, 11, 12}};
+    int C[MAX][MAX];
+    
+    int m = 2; // Número de linhas
+    int n = 3; // Número de colunas
+
+    // Soma
+    somaMatrizes(A, B, C, m, n);
+    printf("Soma das Matrizes:\n");
+    imprimeMatriz(C, m, n);
+
+    // Subtração
+    subtraiMatrizes(A, B, C, m, n);
+    printf("Subtração das Matrizes:\n");
+    imprimeMatriz(C, m, n);
+
+    // Multiplicação (A é 2x3 e B é 3x2, então C será 2x2)
+    int D[MAX][MAX] = {{1, 2}, {3, 4}}; // Matriz B para multiplicação
+    int E[MAX][MAX];
+    int p = 2; // Número de colunas da matriz B
+
+    multiplicaMatrizes(A, D, E, m, n, p);
+    printf("Multiplicação das Matrizes:\n");
+    imprimeMatriz(E, m, p);
+
+    return 0;
+}
